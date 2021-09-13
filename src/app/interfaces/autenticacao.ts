@@ -1,4 +1,4 @@
 export interface Autenticacao {
-    email: String,
-    password: String
+  email: String,
+  password: String
 }

@@ -1,6 +1,7 @@
+
+import { Autenticacao } from './../interfaces/autenticacao';
 import { Component, OnInit } from '@angular/core';
-import { Autenticacao } from '../interfaces/autenticacao';
-import { Usuario } from '../interfaces/usuario';
+
 import { LoginService } from '../services/login.service';
 
 @Component({
@@ -11,28 +12,36 @@ import { LoginService } from '../services/login.service';
 export class TelaDeLoginComponent implements OnInit {
 
 
-  constructor(private _loginService : LoginService
-              ) {
+  constructor(private _loginService: LoginService
+  ) {
 
-   }
+  }
+
+  auth: Autenticacao = {
+    email: "teste",
+    password: ""
+  };
 
   ngOnInit(): void {
 
   }
 
-  cadastro(){
+  cadastro() {
 
   }
 
 
-  logar(auth : Autenticacao){
+  logar() {
+
     let mensagem = "";
-    this._loginService.autenticacao(auth).subscribe(
+
+    console.log(this.auth);
+    this._loginService.autenticacao(this.auth).subscribe(
       (auth) => {
         mensagem = "Seja bem vindo: " + auth.nome;
       },
       (err) => {
-        mensagem = "Usuário não encontrado";
+        mensagem = err;
       }
     );
 
