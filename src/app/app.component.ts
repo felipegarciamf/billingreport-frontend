@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Autenticacao } from './interfaces/autenticacao';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'billingreport-frontend';
+
+  autenticacao: Autenticacao;
+
+  logar($event){
+    console.log($event);
+    this.autenticacao = $event;
+  }
+
 }

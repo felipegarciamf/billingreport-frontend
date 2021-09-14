@@ -1,8 +1,8 @@
 
 import { Autenticacao } from './../interfaces/autenticacao';
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LoginService } from '../services/login.service';
+
 
 @Component({
   selector: 'app-tela-de-login',
@@ -11,6 +11,9 @@ import { LoginService } from '../services/login.service';
 })
 export class TelaDeLoginComponent implements OnInit {
 
+
+  @Output() aoLogar = new EventEmitter<any>();
+  @Output() valoresComErro = new EventEmitter<string>();
 
   constructor(private _loginService: LoginService
   ) {
@@ -32,22 +35,32 @@ export class TelaDeLoginComponent implements OnInit {
 
 
   logar() {
-
     let mensagem = "";
+    if (this.dadosValidos())
+      this._loginService.autenticacao(this.auth).subscribe(
+        (auth) => {
+          mensagem = "Seja bem vindo: " + auth.nome;
+        },
+        (err) => {
+          mensagem = err;
+          console.log(mensagem);
+        }
+      );
 
-    console.log(this.auth);
-    this._loginService.autenticacao(this.auth).subscribe(
-      (auth) => {
-        mensagem = "Seja bem vindo: " + auth.nome;
-      },
-      (err) => {
-        mensagem = err;
-      }
-    );
-
-    console.log(mensagem);
+    const valorLogar = {
+      email: this.auth.email,
+      password: this.auth.password
+    }
+    this.aoLogar.emit(valorLogar);
 
 
+  }
+  dadosValidos(): boolean {
+    if (this.auth.email != "" && this.auth.password != "") {
+      return true;
+    }
+    this.valoresComErro.emit('Informe um valor válido');
+    return false;
   }
 
 

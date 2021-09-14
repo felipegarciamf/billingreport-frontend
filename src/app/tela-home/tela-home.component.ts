@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Autenticacao } from './../interfaces/autenticacao';
+import { Component, Input, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-tela-home',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TelaHomeComponent implements OnInit {
 
+  @Input() autenticacao: Autenticacao;
+
   constructor() { }
 
+
+
   ngOnInit(): void {
+  }
+
+  exibirModal($event){
+
+    console.log($event);
   }
 
 }
