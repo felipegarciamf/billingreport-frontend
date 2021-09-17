@@ -36,23 +36,8 @@
   display: flex;
 }
 
-.container {
-  max-width: 40%;
-  margin-top: 10%;
-  padding: 15px;
-}
-
-.box-cadastro {
-  box-sizing: border-box;
-  border-bottom: aquamarine;
-  border-radius: 5px;
-  background: white;
-  height: 100px;
-  box-shadow: 0 0 8px rgb(0 0 0 / 10%);
-}
-
 .botao {
-  background-color: green;
+  background-color: var(--primary);
   color: white;
   display: block;
   flex: 1;

@@ -1,5 +1,7 @@
+import { LoginService } from './../services/login.service';
 import { Autenticacao } from './../interfaces/autenticacao';
 import { Component, Input, OnInit } from '@angular/core';
+import { Usuario } from '../interfaces/usuario';
 
 
 @Component({
@@ -9,18 +11,26 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TelaHomeComponent implements OnInit {
 
-  @Input() autenticacao: Autenticacao;
 
-  constructor() { }
+  autenticacao: Autenticacao;
+
+  constructor(private loginService: LoginService) {
+   }
 
 
 
   ngOnInit(): void {
+    debugger
+    this.autenticacao = this.loginService.usuarioLogado;
+    console.log(this.autenticacao);
   }
 
   exibirModal($event){
-
     console.log($event);
+  }
+
+  atualizar(){
+    this.autenticacao = this.loginService.usuarioLogado;
   }
 
 }

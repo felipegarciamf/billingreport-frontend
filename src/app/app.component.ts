@@ -1,3 +1,4 @@
+import { LoginService } from './services/login.service';
 import { Component } from '@angular/core';
 import { Autenticacao } from './interfaces/autenticacao';
 
@@ -9,11 +10,15 @@ import { Autenticacao } from './interfaces/autenticacao';
 export class AppComponent {
   title = 'billingreport-frontend';
 
+  constructor(private _login: LoginService){
+
+  }
+
   autenticacao: Autenticacao;
 
   logar($event){
     console.log($event);
-    this.autenticacao = $event;
+    this._login.autenticacaoDeUsuario($event);
   }
 
 }

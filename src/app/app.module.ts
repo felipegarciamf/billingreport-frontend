@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app-routing.modules';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
@@ -21,7 +22,8 @@ registerLocaleData(localePt, 'pt');
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [
     { provide : LOCALE_ID, useValue: 'pt'},

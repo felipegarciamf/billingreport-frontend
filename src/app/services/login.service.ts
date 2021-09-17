@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { HttpHeaders } from "@angular/common/http";
@@ -9,9 +10,18 @@ import { Usuario } from '../interfaces/usuario';
 })
 export class LoginService {
 
-  constructor(private _http: HttpClient) { }
 
-  private usuarioLogado : Usuario;
+
+
+  constructor(private _http: HttpClient) {
+    this.autenticacao = {
+      email: "",
+      password: ""
+    }
+
+  }
+
+  private autenticacao : Autenticacao;
 
   private _url: string = "http://localhost:8080/autenticacao";
 
@@ -23,12 +33,15 @@ export class LoginService {
   };
 
 
-  public autenticacao(auth: Autenticacao){
+   autenticacaoDeUsuario(auth: Autenticacao){
+     debugger
+    this.autenticacao = auth;
     return this._http.post<Usuario>(this._url, auth, this._httpOptions);
   }
 
-
-
+  get usuarioLogado(){
+    return this.autenticacao;
+  }
 
 
 }

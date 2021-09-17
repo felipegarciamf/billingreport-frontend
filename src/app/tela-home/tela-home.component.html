@@ -1,4 +1,12 @@
-<p>Nome: {{ autenticacao?.email }}</p>
-<p>Password: {{ autenticacao?.password }}</p>
+<section class="container">
+<h2 class="titulo">Home</h2>
+<p>Nome: {{ autenticacao.email }}</p>
+<p>Password: {{ autenticacao.password }}</p>
 
 
+
+<div class="botao-wrapper">
+  <button class="botao cadastro" (click)="atualizar()">Atualizar</button>
+</div>
+
+</section>

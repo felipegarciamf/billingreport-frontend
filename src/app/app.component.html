@@ -1,5 +1,9 @@
-<app-tela-de-login (aoLogar)="logar($event)"></app-tela-de-login>
+<header>
+  <a routerLink="home">TELA HOME</a>
+  <a routerLink="login">TELA DE LOGIN</a>
+</header>
+<main>
+<router-outlet></router-outlet>
 
-<app-tela-home [autenticacao]="autenticacao"></app-tela-home>
 
-
+</main>

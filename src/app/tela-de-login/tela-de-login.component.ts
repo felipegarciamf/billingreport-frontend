@@ -2,6 +2,7 @@
 import { Autenticacao } from './../interfaces/autenticacao';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,14 +16,15 @@ export class TelaDeLoginComponent implements OnInit {
   @Output() aoLogar = new EventEmitter<any>();
   @Output() valoresComErro = new EventEmitter<string>();
 
-  constructor(private _loginService: LoginService
+  constructor(private _loginService: LoginService,
+              private router: Router
   ) {
 
   }
 
   auth: Autenticacao = {
     email: "teste",
-    password: ""
+    password: "teste"
   };
 
   ngOnInit(): void {
@@ -37,13 +39,16 @@ export class TelaDeLoginComponent implements OnInit {
   logar() {
     let mensagem = "";
     if (this.dadosValidos())
-      this._loginService.autenticacao(this.auth).subscribe(
+      this._loginService.autenticacaoDeUsuario(this.auth).subscribe(
         (auth) => {
           mensagem = "Seja bem vindo: " + auth.nome;
+          this.router.navigateByUrl("home");
         },
         (err) => {
+          this.router.navigateByUrl("home");
           mensagem = err;
           console.log(mensagem);
+
         }
       );
 
